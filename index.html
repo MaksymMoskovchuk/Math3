@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тестування та Реєстрація</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Реєстрація користувача</h1>
+
+<form id="registrationForm">
+    <label for="firstName">Ім'я:</label>
+    <input type="text" id="firstName" name="firstName" required><br><br>
+
+    <label for="lastName">Прізвище:</label>
+    <input type="text" id="lastName" name="lastName" required><br><br>
+
+    <label for="email">Електронна пошта:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <input type="submit" value="Зареєструватися">
+</form>
+
+<hr>
+
+<h2>Тест: Хто літає?</h2>
+
+<form id="quizForm" style="display: none;">
+    <p>Хто літає?</p>
+    <input type="radio" name="question1" value="a"> Собака<br>
+    <input type="radio" name="question1" value="b"> Птах<br>
+    <input type="radio" name="question1" value="c"> Риба<br><br>
+
+    <input type="button" value="Перевірити відповідь" onclick="checkAnswer()">
+</form>
+
+<script>
+document.getElementById("registrationForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the form from submitting
+    
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+
+    // Here you can perform validation or send the data to a server for further processing
+    // For simplicity, let's just log the data to the console
+    console.log("Ім'я: " + firstName);
+    console.log("Прізвище: " + lastName);
+    console.log("Електронна пошта: " + email);
+    console.log("Пароль: " + password);
+
+    // Optionally, you can show the quiz form after successful registration
+    document.getElementById("registrationForm").style.display = "none";
+    document.getElementById("quizForm").style.display = "block";
+});
+
+function checkAnswer() {
+    var answer = document.querySelector('input[name="question1"]:checked').value;
+    var feedback = "";
+
+    if (answer === "b") {
+        feedback = "Правильно! Птах літає.";
+    } else {
+        feedback = "Неправильно. Спробуйте ще раз.";
+    }
+
+    alert(feedback);
+}
+</script>
+</body>
+</html>
